@@ -77,7 +77,6 @@ $(function(){
       myScroll = new IScroll('#wrapper',{scrollX: false, freeScroll:false});
     });
   }
-
   //dom 集合
   var dom = {
     people:$('.j-people'),
@@ -154,10 +153,8 @@ $(function(){
       dom.camera.on('click',function(){
         navigator.camera.getPicture(onSuccess, onFail, { quality: 20 }); 
         function onSuccess(contacts){
-         /* $('<li>').text()*/
-
+         
         }
-
         function onFail(){
           alert('error');
         }
@@ -166,8 +163,6 @@ $(function(){
 
     }
   };
-
-
   //入口脚本
   var main = function(){
     scrollHandler();
@@ -175,9 +170,7 @@ $(function(){
     //Phonegap 相关控制
     deviceContrller.intial();
   };
-
   main();
-
 });
 </script>
 </body>
