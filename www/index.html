@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content=" " />
+  <meta name="description" content=" " />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+  <meta content="telephone=no" name="format-detection" /> 
+  <meta content="email=no" name="format-detection" />
+  <title>phonegap demo</title>
+  <link rel="stylesheet" href="./css/jqueryMobile.css">
+  <link href="./css/test.css" rel="stylesheet" type="text/css"> 
+  <script src="./js/comm/jquery-1.11.2.js"></script>
+  <script src="./js/comm/jqueryMobile.js"></script>
+  <script src="cordova.js"></script>
+  <script src="./js/comm/iScroll5.js"></script>
+  <script src="./js/comm/handlebars-v3.0.3.js"></script>
+</head>
+<body>
+<!-- <div class="page1">
+  <div id="header"><a href="#">X</a>WeChat</div>
+    <div id="wrapper" class="wrapper">
+      <div id="scroller">
+      <ul class="m-list j-container">
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div id="wrapper2" class="page2">
+    <div class="header">
+    </div>
+  </div>
+<div id="footer" class="m-footer">
+  <ul>
+    <li class="people j-people"><img src="./img/people.png"/></li>
+    <li class="j-camera"><img src="./img/camera.png"/></li>
+    <li><img src="./img/people.png"/></li>
+  </ul>
+</div> -->
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>WeChat</h1>
+  </div>
+
+  <div data-role="content">
+    <div id="wrapper" class="wrapper">
+      <div id="scroller">
+        <ul class="m-list j-container">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div data-role="footer" class="m-footer">
+    <ul>
+      <li class="people j-people"><img src="./img/people.png"/></li>
+      <li class="j-camera"><img src="./img/camera.png"/></li>
+      <li><a href="#pagetwo"><img src="./img/people.png"/></a></li>
+    </ul>
+  </div>
+</div> 
+
+<div data-role="page" id="pagetwo">
+  <div data-role="header">
+    <h1>欢迎来到我的主页</h1>
+  </div>
+
+  <div data-role="content">
+    <p>点击链接来查看反向的滑动效果（从左向右滑动到前一页）</p>
+    <a href="#pageone">滑动到页面一（反向）</a>
+  </div>
+
+  <div data-role="footer">
+  <h1>页脚文本</h1>
+  </div>
+</div>
+
+<script id="tpl" type="text/x-handlebars-template">
+      {{#peopleinfo}}
+        <li>
+          <img src="./img/headpic/{{src}}"/>
+          <div class="content">
+            <h1>{{title}}</h1>
+            <h2>{{content}}</h2>
+          </div>
+          <div class="m-delete">删除</div>
+        </li>
+      {{/peopleinfo}}
+</script>
+
+<script type="text/javascript">
+$(function(){
+  var myScroll;
+  //iScroll 滚动控制
+  var scrollHandler = function(){
+    $(window).load(function(){
+      myScroll = new IScroll('#wrapper',{scrollX: false, freeScroll:false});
+    });
+  }
+
+  //dom 集合
+  var dom = {
+    people:$('.j-people'),
+    list:$('.j-container'),//list 列表集合
+    camera:$('.j-camera')
+  };
+  //数据绑定控制
+  var dataController = {
+    initial:function(){
+      $(document).ready(function(){
+        var template = Handlebars.compile($("#tpl").html());
+        var data = {
+           peopleinfo:[
+              {src:"1.jpg",title:"测试标题",content:"测试内容"},
+              {src:"2.jpg",title:"测试标题",content:"测试内容"},
+              {src:"3.jpg",title:"测试标题",content:"测试内容"},
+              {src:"4.jpg",title:"测试标题",content:"测试内容"},
+              {src:"5.jpg",title:"测试标题",content:"测试内容"},
+              {src:"6.jpg",title:"测试标题",content:"测试内容"},
+              {src:"7.jpg",title:"测试标题",content:"测试内容"},
+              {src:"8.jpg",title:"测试标题",content:"测试内容"},
+              {src:"9.jpg",title:"测试标题",content:"测试内容"},
+              {src:"1.jpg",title:"测试标题",content:"测试内容"},
+              {src:"2.jpg",title:"测试标题",content:"测试内容"},
+              {src:"3.jpg",title:"测试标题",content:"测试内容"},
+              {src:"4.jpg",title:"测试标题",content:"测试内容"},
+              {src:"5.jpg",title:"测试标题",content:"测试内容"},
+              {src:"6.jpg",title:"测试标题",content:"测试内容"}
+          ]
+        };
+        $('.m-list').html(template(data));
+      });
+    }
+  }
+
+  //phoneapp 设备事件的初始控制
+  var deviceContrller = {
+    intial:function(){
+      this.bindEvents();
+    },
+    bindEvents:function(){
+      $(document).on('deviceready',function(){
+        deviceContrller.eventsHandler();
+      });
+    },
+    eventsHandler:function(){
+      //相关事件绑定
+      //获取联系人信息
+      dom.people.on('click',function(){
+        var options = new ContactFindOptions();  
+        var fields = ["displayName", "phoneNumbers"];  
+        navigator.contacts.find(fields, onSuccess, onError); 
+
+        function onSuccess(contacts) {
+          alert('Found ' + contacts.length + ' contacts.');
+          for(var i=0;i<contacts.length;i++){
+            var li = $('<li><img src="./img/headpic/2.jpg"/></li>');
+            var div = $('<div class="content"/>');
+            var h1 = $('<h1/>');
+            h1.text(contacts[i].name.formatted);
+            div.append(h1);
+            li.append(div);
+            $('.j-container').append(li);
+            myScroll.refresh();
+          }
+        };
+
+        function onError(contactError) {
+          alert('onError!');
+        };
+         
+      });
+
+      dom.camera.on('click',function(){
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 20 }); 
+        function onSuccess(contacts){
+         /* $('<li>').text()*/
+
+        }
+
+        function onFail(){
+          alert('error');
+        }
+      });
+
+
+    }
+  };
+
+
+  //入口脚本
+  var main = function(){
+    scrollHandler();
+    dataController.initial();
+    //Phonegap 相关控制
+    deviceContrller.intial();
+  };
+
+  main();
+
+});
+</script>
+</body>
+</html> 

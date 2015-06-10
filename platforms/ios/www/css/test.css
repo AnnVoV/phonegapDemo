@@ -1,0 +1,225 @@
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    html,body {
+      font-size:62.5%;
+      font-size: 10px;
+      width:100%;
+      height:100%;
+    }
+    html {
+      -ms-touch-action: none;
+    }
+    body,ul,li {
+      padding: 0;
+      margin: 0;
+      border: 0;
+    }
+    body {
+      font-size: 12px;
+      font-family: ubuntu, helvetica, arial;
+      overflow: hidden; /* this is important to prevent the whole page to bounce */
+    }
+    h1,h2 {
+      margin:0;
+      padding:0;
+    }
+    #header {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      background:linear-gradient(top,#575757,#323232);
+      background:-webkit-linear-gradient(top,#575757,#323232);
+      padding: 0;
+      color: #eee;
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    #footer {
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background:linear-gradient(top,#eee,gray);
+      background:-webkit-linear-gradient(top,#eee,gray);
+      padding: 0;
+      box-shadow:0px -1px 3px rgba(0,0,0,.5);
+    }
+    .m-footer {
+      position:absolute;
+      bottom:0;
+      width:100%;
+    }
+    .m-footer ul {
+      list-style:none;
+      overflow: hidden;
+    }
+    .m-footer ul,li {
+      margin:0;
+      padding:0;
+    }
+    .m-footer li {
+      float:left;
+      width:33%;
+      height:48px;
+      line-height:48px;
+      text-align: center;
+    }
+    .m-footer img {
+      width:40px;
+      height:40px;
+    }
+
+    .wrapper {
+      position: absolute;
+      z-index: 1;
+      top: 45px;
+      bottom: 48px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .page1 {
+      position: relative;
+      height:100%;
+    }
+    .page2 {
+      position: absolute;
+      z-index: 2;
+      top:0%;
+      left:100%;
+      width:100%;
+      height:100%;
+      background:#ddd;
+      overflow: hidden;
+    }
+    .page2 .header {
+      width:100%;
+      height:45px;
+      background:gray;
+    }
+    #scroller {
+      position: absolute;
+      z-index: 1;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      width: 120%;
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      -o-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-text-size-adjust: none;
+      -moz-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+      -o-text-size-adjust: none;
+      text-size-adjust: none;
+      background: #fff;
+    }
+    .m-list {
+      list-style:none;
+      overflow:hidden;
+      width:100%;
+    }
+    .m-list li {
+      position:relative;
+      width:100%;
+      padding:10px;
+      height:80px;
+      background:linear-gradient(top,#fff,#FBF7FF);
+      background:-webkit-linear-gradient(top,#fff,#FBF7FF);
+      border-bottom:1px solid #ddd;
+    }
+    .m-list h1 {
+      font-size: 1.7rem;
+    }
+    .m-list h2 {
+      font-size: 1.5rem;
+      margin-top:20px;
+    }
+    .m-list img {
+      float:left;
+      margin-right:15px;
+      width:60px;
+      height:60px;
+      border-radius: 5px;
+      box-shadow:0px 0px 3px #ddd;
+    }
+    .m-list .content {
+      font-size: 1.5rem;
+    }
+    .m-list .m-delete {
+      position:absolute;
+      width:40px;
+      height:100%;
+      line-height:80px;
+      top:0;
+      right:0px;
+      background:#B92E12;
+      text-align: center;
+      font-size:1.5rem;
+      color:#fff;
+    }
+    .m-page {
+      width:100%;
+      height:100%;
+      background:#ddd;
+    }
+    .preout {
+      animation:moveOut .5s ease;
+      animation-fill-mode:forwards;
+      -webkit-animation:moveOut .5s ease;
+      -webkit-animation-fill-mode:forwards;
+    }
+    .nextin{
+      animation:moveIn .5s ease;
+      animation-fill-mode:forwards;
+      -webkit-animation:moveIn .5s ease;
+      -webkit-animation-fill-mode:forwards;
+    }
+    @keyframes moveIn {
+      from {
+        left:100%;
+      }
+      to {
+        left:0%;
+      }
+    }
+    @-webkit-keyframes moveIn {
+      from {
+        left:100%;
+      }
+      to {
+        left:0%;
+      }
+    }
+    @keyframes moveOut {
+      from {
+        left:0%;
+      }
+      to {
+        left:-100%;
+      }
+    }
+    @-webkit-keyframes moveOut {
+      from {
+        left:0%;
+      }
+      to {
+        left:-100%;
+      }
+    }
+    
